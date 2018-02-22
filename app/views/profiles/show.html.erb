@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-4 ml-auto mr-auto">
+    <div class="card">
+        <img src="<%= @profile.picture %>" class="card-img-top" alt="Profile PIcture">
+      <div class="card-body">
+        <p>
+          <strong>User:</strong>
+          <%= @profile.user.email %>
+        </p>
+
+        <p>
+          <strong>Name:</strong>
+          <%= @profile.name %>
+        </p>
+
+        <p>
+          <strong>Picture:</strong>
+          <%= @profile.picture %>
+        </p>
+
+        <p>
+          <strong>City:</strong>
+          <%= @profile.city %>
+        </p>
+
+        <p>
+          <strong>Country:</strong>
+          <%= @profile.country %>
+        </p>
+
+        <% if current_user == @profile.user%>
+        <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-info' %>
+        <% end %>
+
+
+      </div>
+    </div>
+
+
+    <% @profile.user.status_updates.each do |status_update| %>
+    <div class="card">
+      <div class="card-body">
+        <h4> <%= status_update.title %> </h4>
+        <p><%= status_update.content %></p>
+        <p>
+          Updated by: <%=link_to status_update.user.profile.name, profile_path(status_update.user.profile) %>
+        <%= time_ago_in_words(status_update.created_at)%>
+        </p>
+
+      </div>
+
+    </div>
+
+
+<% end %>
+</div>
+</div>

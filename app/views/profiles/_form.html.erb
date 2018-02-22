@@ -1,0 +1,15 @@
+
+<%= simple_form_for(@profile) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :picture %>
+    <%= f.input :city %>
+    <%= f.input :country, priority: ['Australia'] %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

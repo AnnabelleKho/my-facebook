@@ -1,0 +1,54 @@
+<h1>Facebook</h1>
+
+<% if user_signed_in? %>
+  <% if current_user.profile %>
+
+  <p>
+    <%= link_to 'Go to your profile', profile_path(current_user.profile), class: 'btn btn-warning'%>
+  </p>
+  <% else %>
+
+  <p>
+
+  <%= link_to 'Create your profile', new_profile_path, class: 'btn btn-info' %> </p>
+
+  <% end %>
+ <% end %>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+
+      <%= render 'status_updates/form', status_update: @status_update %>
+
+      </div>
+
+    </div>
+
+<br>
+
+<div class="card">
+  <div class="card-body">
+    <% @status_updates.each do |status_update| %>
+
+    <h4> <%= status_update.title %> </h4>
+    <p><%= status_update.content %></p>
+    <p>
+      Updated by: <%=link_to status_update.user.profile.name, profile_path(status_update.user.profile) %>
+    <%= time_ago_in_words(status_update.created_at)%>
+    </p>
+
+    <hr>
+    <% end %>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+</div>
